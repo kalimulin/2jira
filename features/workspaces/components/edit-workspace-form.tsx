@@ -5,7 +5,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {useRef} from "react";
 import Image from "next/image";
-import {ImageIcon} from "lucide-react";
+import {ArrowLeftIcon, ImageIcon} from "lucide-react";
 import {useRouter} from "next/navigation";
 
 import {updateWorkspaceSchema} from "@/features/workspaces/schemas";
@@ -14,13 +14,10 @@ import {DottedSeparator} from "@/components/dotted-separator";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {useCreateWorkspace} from "@/features/workspaces/api/use-create-workspace";
 import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 import {Workspace} from "@/features/workspaces/types";
 import {cn} from "@/lib/utils";
-
-
-
+import {useUpdateWorkspace} from "@/features/workspaces/api/use-update-workspace";
 
 interface EditWorkspaceFormProps {
   onCancel?: () => void;
@@ -29,7 +26,7 @@ interface EditWorkspaceFormProps {
 
 export const EditWorkspaceForm = ({onCancel, initialValues}: EditWorkspaceFormProps) => {
   const router = useRouter();
-  const { mutate, isPending } = useCreateWorkspace();
+  const { mutate, isPending } = useUpdateWorkspace();
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -63,8 +60,14 @@ export const EditWorkspaceForm = ({onCancel, initialValues}: EditWorkspaceFormPr
   }
 
   return (
-    <Card className={"w-full h-full border-none shadow-none"}>
-      <CardHeader className="flex p-7">
+    <Card className="w-full h-full border-none shadow-none">
+      <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
+        <Button
+          size="sm"
+          variant="secondary"
+          onClick={onCancel ? onCancel : () => router.push(`/workspaces/${initialValues.$id}`)}>
+          <ArrowLeftIcon className="size-4 mr-2" />Back
+        </Button>
         <CardTitle className="texl-xl font-bold">
           {initialValues.name}
         </CardTitle>
@@ -129,16 +132,34 @@ export const EditWorkspaceForm = ({onCancel, initialValues}: EditWorkspaceFormPr
                           disabled={isPending}
                           onChange={handleImageChange}
                         />
-                        <Button
-                          type="button"
-                          disabled={isPending}
-                          variant="tertiary"
-                          size="xs"
-                          className="w-fit mt-2"
-                          onClick={() => inputRef.current?.click()}
-                        >
-                          Upload image
-                        </Button>
+                        {field.value ? (
+                          <Button
+                            type="button"
+                            disabled={isPending}
+                            variant="destructive"
+                            size="xs"
+                            className="w-fit mt-2"
+                            onClick={() => {
+                              field.onChange(null);
+                              if (inputRef.current) {
+                                inputRef.current.value = "";
+                              }
+                            }}
+                          >
+                            Remove image
+                          </Button>
+                        ) : (
+                          <Button
+                            type="button"
+                            disabled={isPending}
+                            variant="tertiary"
+                            size="xs"
+                            className="w-fit mt-2"
+                            onClick={() => inputRef.current?.click()}
+                          >
+                            Upload image
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -163,7 +184,7 @@ export const EditWorkspaceForm = ({onCancel, initialValues}: EditWorkspaceFormPr
                 variant="primary"
                 disabled={isPending}
               >
-                Create workspace
+                Save changes
               </Button>
             </div>
           </form>

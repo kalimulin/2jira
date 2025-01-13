@@ -18,7 +18,7 @@ const WorkspaceIdSettingsPage = async ({params}: WorkspaceIdSettingsPageProps) =
   if (!initialValues) redirect(`/${params.workspaceId}`)
 
   return (
-    <div>
+    <div className="w-full lg:max-w-xl">
       <EditWorkspaceForm initialValues={initialValues} />
     </div>
   )
