@@ -4,7 +4,7 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 
-type ResponseType = InferResponseType<typeof client.api.auth.login['$post']>;
+type ResponseType = InferResponseType<typeof client.api.auth.login['$post'], 200>;
 
 export const useLogout = () => {
   const queryClient = useQueryClient();
