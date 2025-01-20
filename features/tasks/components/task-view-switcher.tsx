@@ -45,8 +45,8 @@ export const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) =
 
   const { mutate: bulkUpdate } = useBulkUpdateTasks();
 
-  const { 
-    data: tasks, 
+  const {
+    data: tasks,
     isLoading: isLoadingTasks
   } = useGetTasks({
     workspaceId,
@@ -102,7 +102,7 @@ export const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) =
           </Button>
         </div>
         <DottedSeparator className="my-4" />
-          <DataFilters hideProjectFilter={hideProjectFilter} />
+        <DataFilters hideProjectFilter={hideProjectFilter} />
         <DottedSeparator className="my-4" />
         {isLoadingTasks ? (
           <div className="w-full border rounded-lg h-[200px] flex flex-col items-center justify-center">
@@ -112,16 +112,16 @@ export const TaskViewSwitcher = ({ hideProjectFilter }: TaskViewSwitcherProps) =
           <>
             <TabsContent value="table" className="mt-0">
               <DataTable columns={columns} data={tasks?.documents ?? []} />
-            </TabsContent>  
+            </TabsContent>
             <TabsContent value="kanban" className="mt-0">
               <DataKanban onChange={onKanbanChange} data={tasks?.documents ?? []} />
-            </TabsContent>  
+            </TabsContent>
             <TabsContent value="calendar" className="mt-0 h-full pb-4">
               <DataCalendar data={tasks?.documents ?? []} />
-            </TabsContent>  
+            </TabsContent>
           </>
         )}
       </div>
     </Tabs>
-  );
-};
+  )
+}

@@ -8,7 +8,7 @@ import { CreateTaskForm } from "./create-task-form";
 
 interface CreateTaskFormWrapperProps {
   onCancel: () => void;
-};
+}
 
 export const CreateTaskFormWrapper = ({
   onCancel
@@ -47,5 +47,5 @@ export const CreateTaskFormWrapper = ({
       projectOptions={projectOptions ?? []}
       memberOptions={memberOptions ?? []}
     />
-  );
-};
+  )
+}
