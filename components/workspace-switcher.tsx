@@ -1,23 +1,30 @@
 "use client";
 
-import {RiAddCircleFill} from "react-icons/ri";
-import {WorkspaceAvatar} from "@/features/workspaces/components/workspace-avatar";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { RiAddCircleFill } from "react-icons/ri";
 
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
-import {useWorkspaceId} from "@/features/workspaces/hooks/use-workspace-id";
-import {useGetWorkspaces} from "@/features/workspaces/api/use-get-workspaces";
-import {useCreateWorkspaceModal} from "@/features/workspaces/hooks/use-create-workspace-modal";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
+import { WorkspaceAvatar } from "@/features/workspaces/components/workspace-avatar";
+import { useCreateWorkspaceModal } from "@/features/workspaces/hooks/use-create-workspace-modal";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const WorkspaceSwitcher = () => {
-  const workspaceId = useWorkspaceId()
+  const workspaceId = useWorkspaceId();
   const router = useRouter();
-  const {data: workspaces} = useGetWorkspaces();
-  const {open} = useCreateWorkspaceModal();
+  const { data: workspaces } = useGetWorkspaces();
+  const { open } = useCreateWorkspaceModal();
 
   const onSelect = (id: string) => {
     router.push(`/workspaces/${id}`);
-  }
+  };
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -41,5 +48,5 @@ export const WorkspaceSwitcher = () => {
         </SelectContent>
       </Select>
     </div>
-  )
-}
+  );
+};

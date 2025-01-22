@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import {QueryProvider} from "@/components/query-provider";
 import { cn } from "@/lib/utils";
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from "@/components/ui/sonner";
+import { QueryProvider } from "@/components/query-provider";
 
 import "./globals.css";
 
-const inter = Inter({subsets: ["cyrillic", "latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",

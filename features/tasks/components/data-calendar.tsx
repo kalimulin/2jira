@@ -9,6 +9,7 @@ import {
   subMonths,
 } from "date-fns";
 import { enUS } from "date-fns/locale";
+// eslint-disable-next-line
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 
 import { Button } from "@/components/ui/button";

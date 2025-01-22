@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import {useEffect, useState} from "react";
-import {MenuIcon} from "lucide-react";
-import {usePathname} from "next/navigation";
+import { useEffect, useState } from "react";
+import { MenuIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 
-import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
-import {Button} from "@/components/ui/button";
-import {Sidebar} from "@/components/sidebar";
+import { Sidebar } from "./sidebar";
+import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export const MobileSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const pathName = usePathname()
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsOpen(false);
-  }, [pathName])
+  }, [pathname]);
 
   return (
     <Sheet modal={false} open={isOpen} onOpenChange={setIsOpen}>
@@ -27,5 +27,5 @@ export const MobileSidebar = () => {
         <Sidebar />
       </SheetContent>
     </Sheet>
-  )
-}
+  );
+};

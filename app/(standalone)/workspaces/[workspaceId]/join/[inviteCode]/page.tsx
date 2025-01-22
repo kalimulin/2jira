@@ -10,5 +10,5 @@ const WorkspaceIdJoinPage = async () => {
 
   return <WorkspaceIdJoinClient />
 };
-
+ 
 export default WorkspaceIdJoinPage;

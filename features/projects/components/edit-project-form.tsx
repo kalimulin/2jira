@@ -1,20 +1,20 @@
 "use client";
 
-import {z} from "zod";
-import {useRef} from "react";
+import { z } from "zod";
+import { useRef } from "react";
 import Image from "next/image";
-import {useForm} from "react-hook-form";
-import {useRouter} from "next/navigation";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {ArrowLeftIcon, ImageIcon} from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeftIcon, ImageIcon } from "lucide-react";
 
-import {cn} from "@/lib/utils";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {useConfirm} from "@/hooks/use-confirm";
-import {Avatar, AvatarFallback} from "@/components/ui/avatar";
-import {DottedSeparator} from "@/components/dotted-separator";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useConfirm } from "@/hooks/use-confirm";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { DottedSeparator } from "@/components/dotted-separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -24,21 +24,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import {Project} from "../types";
-import {updateProjectSchema} from "../schemas";
-import {useUpdateProject} from "../api/use-update-project";
-import {useDeleteProject} from "../api/use-delete-project";
+import { Project } from "../types";
+import { updateProjectSchema } from "../schemas";
+import { useUpdateProject } from "../api/use-update-project";
+import { useDeleteProject } from "../api/use-delete-project";
 
 interface EditProjectFormProps {
   onCancel?: () => void;
   initialValues: Project;
-}
+};
 
-export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps) => {
+export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProps) => {
   const router = useRouter();
-  const {mutate, isPending} = useUpdateProject();
-  const {
-    mutate: deleteProject,
+  const { mutate, isPending } = useUpdateProject();
+  const { 
+    mutate: deleteProject, 
     isPending: isDeletingProject
   } = useDeleteProject();
 
@@ -49,7 +49,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
   );
 
   const inputRef = useRef<HTMLInputElement>(null);
-
+  
   const form = useForm<z.infer<typeof updateProjectSchema>>({
     resolver: zodResolver(updateProjectSchema),
     defaultValues: {
@@ -64,7 +64,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
     if (!ok) return;
 
     deleteProject({
-      param: {projectId: initialValues.$id},
+      param: { projectId: initialValues.$id },
     }, {
       onSuccess: () => {
         window.location.href = `/workspaces/${initialValues.workspaceId}`;
@@ -80,7 +80,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
 
     mutate({
       form: finalValues,
-      param: {projectId: initialValues.$id}
+      param: { projectId: initialValues.$id }
     });
   };
 
@@ -93,12 +93,11 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
 
   return (
     <div className="flex flex-col gap-y-4">
-      <DeleteDialog/>
+      <DeleteDialog />
       <Card className="w-full h-full border-none shadow-none">
         <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
-          <Button size="sm" variant="secondary"
-                  onClick={onCancel ? onCancel : () => router.push(`/workspaces/${initialValues.workspaceId}/projects/${initialValues.$id}`)}>
-            <ArrowLeftIcon className="size-4 mr-2"/>
+          <Button size="sm" variant="secondary" onClick={onCancel ? onCancel : () => router.push(`/workspaces/${initialValues.workspaceId}/projects/${initialValues.$id}`)}>
+            <ArrowLeftIcon className="size-4 mr-2" />
             Back
           </Button>
           <CardTitle className="text-xl font-bold">
@@ -106,7 +105,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
           </CardTitle>
         </CardHeader>
         <div className="px-7">
-          <DottedSeparator/>
+          <DottedSeparator />
         </div>
         <CardContent className="p-7">
           <Form {...form}>
@@ -115,7 +114,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
                 <FormField
                   control={form.control}
                   name="name"
-                  render={({field}) => (
+                  render={({ field }) => (
                     <FormItem>
                       <FormLabel>
                         Project Name
@@ -126,14 +125,14 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
                           placeholder="Enter project name"
                         />
                       </FormControl>
-                      <FormMessage/>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
                   name="image"
-                  render={({field}) => (
+                  render={({ field }) => (
                     <div className="flex flex-col gap-y-2">
                       <div className="flex items-center gap-x-5">
                         {field.value ? (
@@ -152,7 +151,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
                         ) : (
                           <Avatar className="size-[72px]">
                             <AvatarFallback>
-                              <ImageIcon className="size-[36px] text-neutral-400"/>
+                              <ImageIcon className="size-[36px] text-neutral-400" />
                             </AvatarFallback>
                           </Avatar>
                         )}
@@ -189,7 +188,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
                             <Button
                               type="button"
                               disabled={isPending}
-                              variant="tertiary"
+                              variant="teritary"
                               size="xs"
                               className="w-fit mt-2"
                               onClick={() => inputRef.current?.click()}
@@ -203,7 +202,7 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
                   )}
                 />
               </div>
-              <DottedSeparator className="py-7"/>
+              <DottedSeparator className="py-7" />
               <div className="flex items-center justify-between">
                 <Button
                   type="button"
@@ -231,21 +230,21 @@ export const EditProjectForm = ({onCancel, initialValues}: EditProjectFormProps)
       <Card className="w-ful h-full border-none shadow-none">
         <CardContent className="p-7">
           <div className="flex flex-col">
-            <h3 className="font-bold">Danger Zone</h3>
-            <p className="text-sm text-muted-foreground">
-              Deleting a project is irreversible and will remove all associated data.
-            </p>
-            <DottedSeparator className="py-7"/>
-            <Button
-              className="mt-6 w-fit ml-auto"
-              size="sm"
-              variant="destructive"
-              type="button"
-              disabled={isPending || isDeletingProject}
-              onClick={handleDelete}
-            >
-              Delete Project
-            </Button>
+           <h3 className="font-bold">Danger Zone</h3>
+           <p className="text-sm text-muted-foreground">
+             Deleting a project is irreversible and will remove all associated data.
+           </p>
+           <DottedSeparator className="py-7" />
+           <Button
+            className="mt-6 w-fit ml-auto"
+            size="sm"
+            variant="destructive"
+            type="button"
+            disabled={isPending || isDeletingProject}
+            onClick={handleDelete}
+           >
+            Delete Project
+           </Button>
           </div>
         </CardContent>
       </Card>

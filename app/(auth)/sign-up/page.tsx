@@ -1,6 +1,7 @@
-import {SignUpCard} from "@/features/auth/components/sign-up-card";
-import {getCurrent} from "@/features/auth/queries";
-import {redirect} from "next/navigation";
+import { redirect } from "next/navigation";
+
+import { getCurrent } from "@/features/auth/queries";
+import { SignUpCard } from "@/features/auth/components/sign-up-card";
 
 const SignUpPage = async () => {
   const user = await getCurrent();
@@ -8,6 +9,6 @@ const SignUpPage = async () => {
   if (user) redirect("/");
 
   return <SignUpCard />
-}
-
+};
+ 
 export default SignUpPage;

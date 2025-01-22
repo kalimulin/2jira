@@ -8,10 +8,10 @@ import { Sidebar } from "@/components/sidebar";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
-}
+};
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  return (
+  return ( 
     <div className="min-h-screen">
       <CreateWorkspaceModal />
       <CreateProjectModal />
@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </div>
       </div>
     </div>
-  )
-}
-
+  );
+};
+ 
 export default DashboardLayout;

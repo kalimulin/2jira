@@ -34,17 +34,17 @@ import { useResetInviteCode } from "../api/use-reset-invite-code";
 interface EditWorkspaceFormProps {
   onCancel?: () => void;
   initialValues: Workspace;
-}
+};
 
 export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceFormProps) => {
   const router = useRouter();
   const { mutate, isPending } = useUpdateWorkspace();
-  const {
-    mutate: deleteWorkspace,
+  const { 
+    mutate: deleteWorkspace, 
     isPending: isDeletingWorkspace
   } = useDeleteWorkspace();
-  const {
-    mutate: resetInviteCode,
+  const { 
+    mutate: resetInviteCode, 
     isPending: isResettingInviteCode
   } = useResetInviteCode();
 
@@ -61,7 +61,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
   );
 
   const inputRef = useRef<HTMLInputElement>(null);
-
+  
   const form = useForm<z.infer<typeof updateWorkspaceSchema>>({
     resolver: zodResolver(updateWorkspaceSchema),
     defaultValues: {
@@ -218,7 +218,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
                             <Button
                               type="button"
                               disabled={isPending}
-                              variant="tertiary"
+                              variant="teritary"
                               size="xs"
                               className="w-fit mt-2"
                               onClick={() => inputRef.current?.click()}
@@ -260,33 +260,33 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
       <Card className="w-ful h-full border-none shadow-none">
         <CardContent className="p-7">
           <div className="flex flex-col">
-            <h3 className="font-bold">Invite Members</h3>
-            <p className="text-sm text-muted-foreground">
-              Use the invite link to add members to your workspace.
-            </p>
-            <div className="mt-4">
-              <div className="flex items-center gap-x-2">
-                <Input disabled value={fullInviteLink} />
-                <Button
-                  onClick={handleCopyInviteLink}
-                  variant="secondary"
-                  className="size-12"
-                >
-                  <CopyIcon className="size-5" />
-                </Button>
-              </div>
-            </div>
-            <DottedSeparator className="py-7" />
-            <Button
-              className="mt-6 w-fit ml-auto"
-              size="sm"
-              variant="destructive"
-              type="button"
-              disabled={isPending || isResettingInviteCode}
-              onClick={handleResetInviteCode}
-            >
-              Reset invite link
-            </Button>
+           <h3 className="font-bold">Invite Members</h3>
+           <p className="text-sm text-muted-foreground">
+             Use the invite link to add members to your workspace.
+           </p>
+           <div className="mt-4">
+             <div className="flex items-center gap-x-2">
+              <Input disabled value={fullInviteLink} />
+              <Button
+                onClick={handleCopyInviteLink}
+                variant="secondary"
+                className="size-12"
+              >
+                <CopyIcon className="size-5" />
+              </Button>
+             </div>
+           </div>
+           <DottedSeparator className="py-7" />
+           <Button
+            className="mt-6 w-fit ml-auto"
+            size="sm"
+            variant="destructive"
+            type="button"
+            disabled={isPending || isResettingInviteCode}
+            onClick={handleResetInviteCode}
+           >
+            Reset invite link
+           </Button>
           </div>
         </CardContent>
       </Card>
@@ -294,24 +294,24 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
       <Card className="w-ful h-full border-none shadow-none">
         <CardContent className="p-7">
           <div className="flex flex-col">
-            <h3 className="font-bold">Danger Zone</h3>
-            <p className="text-sm text-muted-foreground">
-              Deleting a workspace is irreversible and will remove all associated data.
-            </p>
-            <DottedSeparator className="py-7" />
-            <Button
-              className="mt-6 w-fit ml-auto"
-              size="sm"
-              variant="destructive"
-              type="button"
-              disabled={isPending || isDeletingWorkspace}
-              onClick={handleDelete}
-            >
-              Delete Workspace
-            </Button>
+           <h3 className="font-bold">Danger Zone</h3>
+           <p className="text-sm text-muted-foreground">
+             Deleting a workspace is irreversible and will remove all associated data.
+           </p>
+           <DottedSeparator className="py-7" />
+           <Button
+            className="mt-6 w-fit ml-auto"
+            size="sm"
+            variant="destructive"
+            type="button"
+            disabled={isPending || isDeletingWorkspace}
+            onClick={handleDelete}
+           >
+            Delete Workspace
+           </Button>
           </div>
         </CardContent>
       </Card>
     </div>
   );
-}
+};

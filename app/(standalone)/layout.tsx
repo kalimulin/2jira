@@ -1,18 +1,19 @@
-import Link from "next/link";
 import Image from "next/image";
-import {UserButton} from "@/features/auth/components/user-button";
+import Link from "next/link";
 
-interface StandaloneLayoutProps {
+import { UserButton } from "@/features/auth/components/user-button";
+
+interface StandloneLayoutProps {
   children: React.ReactNode;
-}
+};
 
-const StandaloneLayout = ({children}: StandaloneLayoutProps) => {
-  return (
+const StandloneLayout = ({ children }: StandloneLayoutProps) => {
+  return ( 
     <main className="bg-neutral-100 min-h-screen">
       <div className="mx-auto max-w-screen-2xl p-4">
         <nav className="flex justify-between items-center h-[73px]">
           <Link href="/">
-            <Image src="/logo.svg" alt="logo" width={202} height={40} />
+            <Image src="/logo.svg" alt="Logo" height={56} width={152} />
           </Link>
           <UserButton />
         </nav>
@@ -21,7 +22,7 @@ const StandaloneLayout = ({children}: StandaloneLayoutProps) => {
         </div>
       </div>
     </main>
-  )
+  );
 }
-
-export default StandaloneLayout;
+ 
+export default StandloneLayout;

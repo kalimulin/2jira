@@ -1,15 +1,15 @@
 "use client";
 
-import { useGetProject } from "@/features/projects/api/use-get-project";
-import { useProjectId } from "@/features/projects/hooks/use-project-id";
-import { EditProjectForm } from "@/features/projects/components/edit-project-form";
+import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { EditWorkspaceForm } from "@/features/workspaces/components/edit-workspace-form";
 
 import { PageLoader } from "@/components/page-loader";
 import { PageError } from "@/components/page-error";
 
-export const ProjectIdSettingsClient = () => {
-  const projectId = useProjectId();
-  const { data: initialValues, isLoading } = useGetProject({ projectId });
+export const WorkspaceIdSettingsClient = () => {
+  const workspaceId = useWorkspaceId();
+  const { data: initialValues, isLoading } = useGetWorkspace({ workspaceId });
 
   if (isLoading) {
     return <PageLoader />
@@ -21,7 +21,7 @@ export const ProjectIdSettingsClient = () => {
 
   return (
     <div className="w-full lg:max-w-xl">
-      <EditProjectForm initialValues={initialValues} />
+      <EditWorkspaceForm initialValues={initialValues} />
     </div>
-  )
+  );
 };

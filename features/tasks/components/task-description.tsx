@@ -10,7 +10,7 @@ import { useUpdateTask } from "../api/use-update-task";
 
 interface TaskDescriptionProps {
   task: Task;
-}
+};
 
 export const TaskDescription = ({ task }: TaskDescriptionProps) => {
   const [isEditing, setIsEditing] = useState(false);

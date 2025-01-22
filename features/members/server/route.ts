@@ -7,9 +7,8 @@ import { createAdminClient } from "@/lib/appwrite";
 import { DATABASE_ID, MEMBERS_ID } from "@/config";
 import { sessionMiddleware } from "@/lib/session-middleware";
 
-import {Member, MemberRole} from "@/features/members/types";
-import {getMember} from "@/features/members/utils";
-
+import { getMember } from "../utils";
+import { Member, MemberRole } from "../types";
 
 const app = new Hono()
   .get(

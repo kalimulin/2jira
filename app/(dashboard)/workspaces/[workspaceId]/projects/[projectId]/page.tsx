@@ -10,5 +10,5 @@ const ProjectIdPage = async () => {
 
   return <ProjectIdClient />
 };
-
+ 
 export default ProjectIdPage;

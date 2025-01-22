@@ -30,7 +30,7 @@ import { useCreateProject } from "../api/use-create-project";
 
 interface CreateProjectFormProps {
   onCancel?: () => void;
-}
+};
 
 export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
   const workspaceId = useWorkspaceId();
@@ -44,29 +44,29 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     defaultValues: {
       name: "",
     },
-  })
+  });
 
   const onSubmit = (values: z.infer<typeof createProjectSchema>) => {
     const finalValues = {
       ...values,
       workspaceId,
       image: values.image instanceof File ? values.image : "",
-    }
+    };
 
     mutate({ form: finalValues }, {
       onSuccess: ({ data }) => {
         form.reset();
         router.push(`/workspaces/${workspaceId}/projects/${data.$id}`);
       }
-    })
-  }
+    });
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       form.setValue("image", file);
     }
-  }
+  };
 
   return (
     <Card className="w-full h-full border-none shadow-none">
@@ -159,7 +159,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                           <Button
                             type="button"
                             disabled={isPending}
-                            variant="tertiary"
+                            variant="teritary"
                             size="xs"
                             className="w-fit mt-2"
                             onClick={() => inputRef.current?.click()}
@@ -197,5 +197,5 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
         </Form>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
